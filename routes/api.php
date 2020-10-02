@@ -14,10 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group([ 'namespace' => 'App\Http\Controllers\Api'], function () {
-    Route::post('register', 'PassportAuthController@register');
-    Route::post('login', 'PassportAuthController@login');
+    Route::post('register', 'AuthController@register');
+    Route::post('login', 'AuthController@login');
 });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+
+Route::group([ 'namespace' => 'App\Http\Controllers\Api', 'middleware' => 'auth:sanctum'], function () {
+    Route::apiResource('employees', 'ApiEmployeeController');
+    Route::apiResource('companies', 'ApiCompanyController');
+});
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+

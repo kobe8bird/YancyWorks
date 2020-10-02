@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Model\User;
+use App\Models\User;
 
-class PassportAuthController extends Controller
+class AuthController extends Controller
 {
     /**
      * Registration Req
@@ -16,9 +16,10 @@ class PassportAuthController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|min:4',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
         ]);
+        
  
         $user = User::create([
             'name' => $request->name,
@@ -26,7 +27,7 @@ class PassportAuthController extends Controller
             'password' => bcrypt($request->password)
         ]);
  
-        $token = $user->createToken('LaravelAuthApp')->accessToken;
+        $token = $user->createToken('YancyWorksAuthApp')->plainTextToken;
  
         return response()->json(['token' => $token], 200);
     }
@@ -43,10 +44,13 @@ class PassportAuthController extends Controller
         ];
  
         if (auth()->attempt($data)) {
-            $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
+            $token = auth()->user()->createToken('YancyWorksAuthApp')->plainTextToken;
             return response()->json(['token' => $token], 200);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
     }
+
+    
+    
 }
