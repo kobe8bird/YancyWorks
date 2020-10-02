@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <p>This is my body content.</p>
+    <p>Hello {{ Auth::user()->name }}</p>
 @endsection
 
 

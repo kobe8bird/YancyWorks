@@ -11,9 +11,6 @@
 <script src="{!! asset('assets/js/scripts.bundle.js') !!}"></script>
 <!--end::Global Theme Bundle-->
 <!--begin::Page Vendors(used by this page)-->
-<script src="{!! asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') !!}"></script>
-<script src="//maps.google.com/maps/api/js?key=AIzaSyBTGnKT7dt597vo9QgeQ7BFhvSRP4eiMSM"></script>
-<script src="{!! asset('assets/plugins/custom/gmaps/gmaps.js') !!}"></script>
 <!--end::Page Vendors-->
 
 <!-- Additional Option to add plugins for specific targeted pages  -->
